@@ -1,5 +1,25 @@
+<!DOCTYPE html>
 <html>
-  <body>
-    <script>alert(document.domain)</script>
-  </body>
+<head>
+    <title>XSS Vector</title>
+</head>
+<body>
+<h1>XSS Test</h1>
+<script>
+  
+if (document.location.hash) {
+   var frag = document.location.hash.match(/[^#][^#]*/)[0];
+}
+
+if (frag) {
+  try {
+    eval(frag);
+  } catch(e) {
+    alert("URL fragment (#) contains invalid JS code, try again!");
+  }
+} else {
+  alert(document.domain);
+}
+</script>
+</body>
 </html>
